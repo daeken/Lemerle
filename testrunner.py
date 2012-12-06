@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import glob, os, subprocess, sys, tempfile
+import glob, os, shutil, subprocess, sys, tempfile
 
 tempdir = None
 compiler = os.getcwd() + '/bootstrap/compile.py'
@@ -46,7 +46,9 @@ def runTest(test, source):
 
 	args = [compiler] + compileArgs
 	if subprocess.call(args) != 0:
+		print 'Failed to compile'
 		return False
+	print 'Succeeded'
 	return True
 
 def main(*tests):
@@ -68,6 +70,9 @@ def main(*tests):
 		os.chdir(tempdir)
 		succeeded += 1 if runTest(test, source) else 0
 		os.chdir(origdir)
+		print
+
+	shutil.rmtree(tempdir)
 
 	print 'Total:', len(tests)
 	print 'Succeeded:', succeeded
