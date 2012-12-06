@@ -1,0 +1,16 @@
+#file Test_Basic.lem
+module Test {
+	Main() : void {
+		print(Add(5, Add(3, 2)));
+	}
+
+	Add(a : int, b : int) : int {
+		return a + b;
+	}
+}
+#end
+
+#compile Test_Basic.lem
+
+#expect
+#end
