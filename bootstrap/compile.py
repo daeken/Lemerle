@@ -1,3 +1,4 @@
 #!/usr/bin/python
 
-print 'foo'
+from lex import Lexer
+from parse import Parser
